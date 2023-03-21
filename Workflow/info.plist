@@ -1184,7 +1184,7 @@ Check download progress via the `dp` keyword.
 		</dict>
 	</array>
 	<key>version</key>
-	<string>2022.5</string>
+	<string>2023.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/vitorgalvao/download-media-workflow/</string>
 </dict>
