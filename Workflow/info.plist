@@ -362,6 +362,8 @@
 				<integer>0</integer>
 				<key>hotmod</key>
 				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -795,7 +797,7 @@ cleanup_tmp_files</string>
 	<key>readme</key>
 	<string>## Usage
 
-Download from [a plethora of online sources](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md) via the Download Video Keyword (default: `dv`) and Download Audio Keyword (default: `da`). Your clipboard and frontmost browser tab are checked for links.
+Download video from [a plethora of online sources](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md) via the `dv` keyword. Download audio with `da`. Your clipboard and frontmost browser tab are checked for links.
 
 ![Download video](images/about/dv.png)
 
@@ -807,7 +809,7 @@ Alternatively, download with the [Universal Action](https://www.alfredapp.com/he
 
 ![Universal action](images/about/ua.png)
 
-Check download progress via the Progress Keyword (default: `dp`).
+Check download progress via the `dp` keyword.
 
 ![Download progress](images/about/dp.png)
 
