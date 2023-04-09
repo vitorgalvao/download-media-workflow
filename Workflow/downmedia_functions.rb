@@ -139,7 +139,7 @@ def download_url(url, media_type, add_to_watchlist_string, full_playlist_string)
   # Video format is forced for consistency between --get-filename and what is downloaded
   flags = media_type == 'audio' ?
     ['--extract-audio', '--audio-quality', '0', '--audio-format', Audio_only_format] :
-    ['--all-subs', '--embed-subs', '--format', Advanced_format]
+    ['--sub-langs', 'all,-live_chat', '--embed-subs', '--embed-chapters', '--format', Advanced_format]
 
   full_playlist ?
     flags.push('--yes-playlist') :
