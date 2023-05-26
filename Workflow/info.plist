@@ -1186,7 +1186,7 @@ Check download progress via the `dp` keyword.
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2023.1</string>
+	<string>2023.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/vitorgalvao/download-media-workflow/</string>
 </dict>
