@@ -1183,6 +1183,8 @@ Check download progress via the `dp` keyword.
 			<string>playlist_title_template</string>
 		</dict>
 	</array>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
 	<string>2023.1</string>
 	<key>webaddress</key>
