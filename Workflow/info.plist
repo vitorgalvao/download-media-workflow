@@ -801,9 +801,9 @@ Download video from [a plethora of online sources](https://github.com/yt-dlp/yt-
 
 ![Download video](images/about/dv.png)
 
-* &lt;kbd&gt;↩&lt;/kbd&gt;: Download.
-* &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: Download full playlist.
-* &lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: Toggle adding to [Watch List](https://alfred.app/workflows/vitor/watch-list).
+* &lt;kbd&gt;↩&lt;/kbd&gt; Download.
+* &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Download full playlist.
+* &lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Toggle adding to [Watch List](https://alfred.app/workflows/vitor/watch-list).
 
 Alternatively, download with the [Universal Action](https://www.alfredapp.com/help/features/universal-actions/).
 
@@ -813,8 +813,8 @@ Check download progress via the `dp` keyword.
 
 ![Download progress](images/about/dp.png)
 
-* &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: Restart download.
-* &lt;kbd&gt;⌃&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt;: Cancel.</string>
+* &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Restart download.
+* &lt;kbd&gt;⌃&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Cancel.</string>
 	<key>uidata</key>
 	<dict>
 		<key>05D66076-BBF0-42B3-AACE-3395B291DCB8</key>
@@ -1183,8 +1183,6 @@ Check download progress via the `dp` keyword.
 			<string>playlist_title_template</string>
 		</dict>
 	</array>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
 	<string>2023.3</string>
 	<key>webaddress</key>
