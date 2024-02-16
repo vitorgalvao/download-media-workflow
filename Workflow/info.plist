@@ -438,6 +438,8 @@ show_options('video')</string>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
+				<key>skipuniversalaction</key>
+				<true/>
 				<key>subtext</key>
 				<string>Download video from popular sources</string>
 				<key>title</key>
@@ -504,6 +506,8 @@ show_options('audio')</string>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
+				<key>skipuniversalaction</key>
+				<true/>
 				<key>subtext</key>
 				<string>Download audio from popular sources</string>
 				<key>title</key>
@@ -695,6 +699,8 @@ show_progress</string>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
+				<key>skipuniversalaction</key>
+				<true/>
 				<key>subtext</key>
 				<string>Shows progress of the current DownMedia download</string>
 				<key>title</key>
