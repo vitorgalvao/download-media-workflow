@@ -139,7 +139,7 @@ def download_url(url, media_type, add_to_watchlist_string, full_playlist_string)
   # Video format is forced for consistency between --get-filename and what is downloaded
   flags = media_type == 'audio' ?
     ['--extract-audio', '--audio-quality', '0', '--audio-format', Audio_only_format] :
-    ['--sub-langs', 'all,-live_chat', '--embed-subs', '--embed-chapters', '--format', Advanced_format]
+    ['--sub-langs', 'all,-live_chat', '--embed-subs', '--format', Advanced_format]
 
   full_playlist ?
     flags.push('--yes-playlist') :
@@ -162,7 +162,7 @@ def download_url(url, media_type, add_to_watchlist_string, full_playlist_string)
   error('Download failed', 'The URL is invalid') if get_filename.empty?
   notification("Downloading #{media_type.capitalize}", title)
 
-  error('Download failed', 'You may be able to restart it with `dp`') unless system('yt-dlp', '--newline', *flags, out: Progress_file.to_path)
+  error('Download failed', 'You may be able to restart it with `dp`') unless system('yt-dlp', '--newline', '--embed-chapters', *flags, out: Progress_file.to_path)
   notification('Download successful', title)
 
   # xattr returns before the action is complete, not giving enough time for the file to have the attribute before sending to WatchList, so only continue after the attribute is present
