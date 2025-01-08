@@ -13,15 +13,9 @@ yt-dlp "YOUR/URL/HERE"
 
 Then report the error on [the yt-dlp issue tracker](https://github.com/yt-dlp/yt-dlp/issues/new/choose), as they’re the ones who’ll be able to fix the issue. The workflow relies on that tool for the downloads.
 
-### How do I report a different issue?
+### How do I report an issue?
 
-Accurate and thorough information is crucial for a proper diagnosis. When reporting issues, please include your *exact* installed versions of:
+Accurate and thorough information is crucial for a proper diagnosis. **At a minimum, your report should include:**
 
-* The Workflow.
-* Alfred.
-* macOS.
-
-In addition to:
-
-* The [debugger](https://www.alfredapp.com/help/workflows/advanced/debugger/) output. Perform the failing action and click *Copy* on the top right.
-* Details on what you did, what happened, and what you expected to happen. A [short video](https://support.apple.com/en-us/HT208721) of the steps with the debugger open may help to find the problem faster.
+* The [debugger](https://www.alfredapp.com/help/workflows/advanced/debugger/) output of the failing action.
+* Your installed versions of: the Workflow, Alfred, and macOS. *Be precise, don’t say “latest”.*
