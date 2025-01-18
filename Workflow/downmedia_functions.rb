@@ -26,6 +26,7 @@ def show_options(media_type)
   common_options = {
     subtitle: "Add to WatchList (⌥): #{Add_to_watchlist} 𐄁 Full Playlist (⌘): false",
     valid: true,
+    icon: { path: 'icon.png' },
     variables: {
       media_type: media_type,
       add_to_watchlist: Add_to_watchlist,
@@ -60,19 +61,21 @@ def show_options(media_type)
   }
 
   if tab_info
-    tab_options = common_options.clone
+    tab_options = Marshal.load(Marshal.dump(common_options))
     tab_options[:uid] = "Download #{media_type} tab"
     tab_options[:title] = tab_info[:title]
     tab_options[:arg] = tab_info[:url]
+    tab_options[:icon][:path] = 'images/browser.png'
 
     script_filter_items.push(tab_options)
   end
 
   if clipboard.start_with?('http')
-    clipboard_options = common_options.clone
+    clipboard_options = Marshal.load(Marshal.dump(common_options))
     clipboard_options[:uid] = "Download #{media_type} clipboard"
     clipboard_options[:title] = clipboard
     clipboard_options[:arg] = clipboard
+    clipboard_options[:icon][:path] = 'images/clipboard.png'
 
     script_filter_items.push(clipboard_options)
   end
