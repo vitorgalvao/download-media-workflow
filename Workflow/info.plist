@@ -1129,7 +1129,7 @@ Check download progress via the `dp` keyword.
 			<key>config</key>
 			<dict>
 				<key>default</key>
-				<string>bestvideo[ext=mp4]+bestaudio[ext=m4a]/best</string>
+				<string>bestvideo*[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/bestvideo*+bestaudio/best</string>
 				<key>placeholder</key>
 				<string></string>
 				<key>required</key>
