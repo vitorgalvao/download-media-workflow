@@ -139,7 +139,7 @@ def download_url(url, media_type, add_to_watchlist_string, full_playlist_string)
   encoded_url = CGI.escape_html(url)
   title_template = full_playlist ? Playlist_title_template : Single_title_template
 
-  # Video format is forced for consistency between --get-filename and what is downloaded
+  # Video format is forced for consistency between --print filename and what is downloaded
   flags = media_type == 'audio' ?
     ['--extract-audio', '--audio-quality', '0', '--audio-format', Audio_only_format] :
     ['--sub-langs', 'all,-live_chat', '--embed-subs', '--format', Advanced_format]
@@ -148,12 +148,12 @@ def download_url(url, media_type, add_to_watchlist_string, full_playlist_string)
     flags.push('--yes-playlist') :
     flags.push('--no-playlist')
 
-  flags.push('--ignore-errors', '--output', Download_dir.join(title_template).to_path, url)
+  flags.push('--ignore-errors', '--embed-chapters', '--output', Download_dir.join(title_template).to_path, url)
 
   # May fail in certain situations, due to bugs in getting the filename beforehand
   # https://github.com/ytdl-org/youtube-dl/issues/5710
   # https://github.com/ytdl-org/youtube-dl/issues/7137
-  get_filename = Open3.capture2('yt-dlp', '--get-filename', *flags).first.strip
+  get_filename = Open3.capture2('yt-dlp', '--simulate', '--print', 'filename', *flags).first.strip
 
   save_path = full_playlist ?
     Pathname(get_filename.split("\n").first).dirname :
@@ -165,7 +165,7 @@ def download_url(url, media_type, add_to_watchlist_string, full_playlist_string)
   error('Download failed', 'The URL is invalid') if get_filename.empty?
   notification("Downloading #{media_type.capitalize}", title)
 
-  error('Download failed', 'You may be able to restart it with `dp`') unless system('yt-dlp', '--newline', '--embed-chapters', *flags, out: Progress_file.to_path)
+  error('Download failed', 'You may be able to restart it with `dp`') unless system('yt-dlp', '--newline', *flags, out: Progress_file.to_path)
   notification('Download successful', title)
 
   # xattr returns before the action is complete, not giving enough time for the file to have the attribute before sending to WatchList, so only continue after the attribute is present
@@ -235,7 +235,7 @@ def cleanup_tmp_files
 end
 
 def to_bool(value)
-  # Useful to assign booleans to Alfred's JSON variables, since those are converted to strings (true becomes "0" and false becomes "1")
+  # Useful to assign booleans to Alfred's JSON variables, since those are converted to strings
   case value
   when true, 'true', 1, '1' then true
   when false, 'false', 0, '0', nil, '' then false
