@@ -19,6 +19,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>2BACFF19-7459-42F6-B8F4-6CFCA9B3CAFF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F43FB5B8-4078-449C-9631-FE56025810D3</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>3B69F416-A08B-4618-99B6-E2AED211C9D8</key>
 		<array>
 			<dict>
@@ -46,7 +59,18 @@
 			</dict>
 		</array>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
-		<array/>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BACFF19-7459-42F6-B8F4-6CFCA9B3CAFF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>822C7F03-3A3A-4842-8C03-72F2D4096BF0</key>
 		<array>
 			<dict>
@@ -65,6 +89,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>BFD78A9F-0242-46A6-982A-9DA120AB8328</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>84E17C6A-F77E-4F2A-B7AD-DA0793F8C416</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B50278C3-F6C2-4103-A37B-B0901BE5723C</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -111,6 +148,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>95D9599B-65C1-410E-85B5-BB36F1676000</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>84E17C6A-F77E-4F2A-B7AD-DA0793F8C416</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>A5F1E477-6809-406A-A350-931125A6F529</key>
 		<array>
 			<dict>
@@ -120,6 +170,21 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B50278C3-F6C2-4103-A37B-B0901BE5723C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E2D161C0-42E9-4D32-BDE6-FED4C715066F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>EED64F19-BE23-4767-8EEB-AB7DA5278BFC</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -237,6 +302,36 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E2D161C0-42E9-4D32-BDE6-FED4C715066F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F9B90B13-958B-44A4-A9B0-9B92E4C6FEE4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>_button1</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F43FB5B8-4078-449C-9631-FE56025810D3</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>95D9599B-65C1-410E-85B5-BB36F1676000</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>0BC66730-6EE7-4E58-B4AA-61C984B7ED91</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -637,8 +732,8 @@ if (scriptFilterItems.length === 0) {
 				<string>require "#{Dir.pwd}/downmedia_functions.rb"
 
 save_pid(Process.pid)
-save_query(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'])
-download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'])</string>
+save_query(ARGV[0], ENV['media_type'])
+download_url(ARGV[0], ENV['media_type'])</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -671,6 +766,148 @@ download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'])</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>function status(isInstalled) {
+  return JSON.stringify({ alfredworkflow: {
+    variables: { watch_list_installed: isInstalled }
+  }})
+}
+
+function run(argv) {
+  try {
+    argv.forEach(file =&gt; Application("com.runningwithcrayons.Alfred").runTrigger("add_file_to_watchlist", { inWorkflow: "com.vitorgalvao.alfred.watchlist", withArgument: file }))
+    return status(true)
+  } catch {
+    return status(false)
+  }
+}</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>7</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>84E17C6A-F77E-4F2A-B7AD-DA0793F8C416</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>https://alfred.app/workflows/vitor/watch-list/</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>F9B90B13-958B-44A4-A9B0-9B92E4C6FEE4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string></string>
+						<key>outputlabel</key>
+						<string>Aborted</string>
+						<key>uid</key>
+						<string>0BC66730-6EE7-4E58-B4AA-61C984B7ED91</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>Successful</string>
+				<key>hideelse</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>2BACFF19-7459-42F6-B8F4-6CFCA9B3CAFF</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>button1</key>
+				<string>Install From the Alfred Gallery</string>
+				<key>button2</key>
+				<string>Cancel</string>
+				<key>button3</key>
+				<string></string>
+				<key>description</key>
+				<string>The Watch List workflow is required to play a stream through it.</string>
+				<key>title</key>
+				<string>Watch List Not Installed</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.dialog</string>
+			<key>uid</key>
+			<string>E2D161C0-42E9-4D32-BDE6-FED4C715066F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:watch_list_installed}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>6</integer>
+						<key>matchstring</key>
+						<string></string>
+						<key>outputlabel</key>
+						<string>Missing Watch List</string>
+						<key>uid</key>
+						<string>EED64F19-BE23-4767-8EEB-AB7DA5278BFC</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+				<key>hideelse</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>B50278C3-F6C2-4103-A37B-B0901BE5723C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argument</key>
 				<string></string>
 				<key>passthroughargument</key>
@@ -685,6 +922,60 @@ download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'])</string>
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>C80AD651-BCAF-4B86-869A-D4D847A2379B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:add_to_watchlist}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>5</integer>
+						<key>matchstring</key>
+						<string></string>
+						<key>outputlabel</key>
+						<string>Use WatchList</string>
+						<key>uid</key>
+						<string>0BC66730-6EE7-4E58-B4AA-61C984B7ED91</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string></string>
+				<key>hideelse</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>F43FB5B8-4078-449C-9631-FE56025810D3</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>delimiter</key>
+				<string>
+</string>
+				<key>discardemptyarguments</key>
+				<true/>
+				<key>outputas</key>
+				<integer>1</integer>
+				<key>trimarguments</key>
+				<true/>
+				<key>variableprefix</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.split</string>
+			<key>uid</key>
+			<string>95D9599B-65C1-410E-85B5-BB36F1676000</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -916,6 +1207,13 @@ Check download progress via the `dp` keyword.
 			<key>ypos</key>
 			<real>275</real>
 		</dict>
+		<key>2BACFF19-7459-42F6-B8F4-6CFCA9B3CAFF</key>
+		<dict>
+			<key>xpos</key>
+			<real>1380</real>
+			<key>ypos</key>
+			<real>535</real>
+		</dict>
 		<key>3B69F416-A08B-4618-99B6-E2AED211C9D8</key>
 		<dict>
 			<key>xpos</key>
@@ -953,6 +1251,17 @@ Check download progress via the `dp` keyword.
 			<key>ypos</key>
 			<real>395</real>
 		</dict>
+		<key>84E17C6A-F77E-4F2A-B7AD-DA0793F8C416</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>Add to Watch List</string>
+			<key>xpos</key>
+			<real>1645</real>
+			<key>ypos</key>
+			<real>515</real>
+		</dict>
 		<key>879AF67B-0DE2-4574-A27B-A502D1E8A123</key>
 		<dict>
 			<key>xpos</key>
@@ -967,6 +1276,13 @@ Check download progress via the `dp` keyword.
 			<key>ypos</key>
 			<real>35</real>
 		</dict>
+		<key>95D9599B-65C1-410E-85B5-BB36F1676000</key>
+		<dict>
+			<key>xpos</key>
+			<real>1570</real>
+			<key>ypos</key>
+			<real>545</real>
+		</dict>
 		<key>A5F1E477-6809-406A-A350-931125A6F529</key>
 		<dict>
 			<key>xpos</key>
@@ -980,6 +1296,15 @@ Check download progress via the `dp` keyword.
 			<real>1020</real>
 			<key>ypos</key>
 			<real>875</real>
+		</dict>
+		<key>B50278C3-F6C2-4103-A37B-B0901BE5723C</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>xpos</key>
+			<real>1805</real>
+			<key>ypos</key>
+			<real>545</real>
 		</dict>
 		<key>B729925C-D828-4631-9988-67499E05791C</key>
 		<dict>
@@ -1043,6 +1368,31 @@ Check download progress via the `dp` keyword.
 			<real>495</real>
 			<key>ypos</key>
 			<real>155</real>
+		</dict>
+		<key>E2D161C0-42E9-4D32-BDE6-FED4C715066F</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>xpos</key>
+			<real>1880</real>
+			<key>ypos</key>
+			<real>535</real>
+		</dict>
+		<key>F43FB5B8-4078-449C-9631-FE56025810D3</key>
+		<dict>
+			<key>xpos</key>
+			<real>1495</real>
+			<key>ypos</key>
+			<real>545</real>
+		</dict>
+		<key>F9B90B13-958B-44A4-A9B0-9B92E4C6FEE4</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>xpos</key>
+			<real>2045</real>
+			<key>ypos</key>
+			<real>515</real>
 		</dict>
 		<key>FD70A114-2767-4782-8D5F-86AC4B3BB8B3</key>
 		<dict>

@@ -6,7 +6,6 @@ require 'open3'
 require 'pathname'
 
 # Constants
-Add_to_watchlist = ENV['add_to_watchlist'] == '1'
 Audio_only_format = ENV['audio_only_format']
 Advanced_format = ENV['advanced_format']
 Download_dir = Pathname.new(ENV['download_dir'])
@@ -57,9 +56,8 @@ def show_progress
   puts({ rerun: 1, items: script_filter_items }.to_json)
 end
 
-def download_url(url, media_type, add_to_watchlist_string)
+def download_url(url, media_type)
   # Setup
-  add_to_watchlist = to_bool(add_to_watchlist_string)
   encoded_url = CGI.escape_html(url)
   title_template = Single_title_template
 
@@ -85,28 +83,21 @@ def download_url(url, media_type, add_to_watchlist_string)
   error('Download failed', 'You may be able to restart it with `dp`') unless system('yt-dlp', '--newline', *flags, out: Progress_file.to_path)
   notification('Download successful', title)
 
-  # xattr returns before the action is complete, not giving enough time for the file to have the attribute before sending to WatchList, so only continue after the attribute is present
+  # xattr returns before the action is complete, not giving enough time for the file to have the attribute before sending to Watch List, so only continue after the attribute is present
   system('/usr/bin/xattr', '-w', 'com.apple.metadata:kMDItemWhereFroms', "<!DOCTYPE plist PUBLIC '-//Apple//DTD PLIST 1.0//EN' 'http://www.apple.com/DTDs/PropertyList-1.0.dtd'><plist version='1.0'><array><string>#{encoded_url}</string></array></plist>", save_path.to_path)
   sleep 1 while Open3.capture2('mdls', '-raw', '-name', 'kMDItemWhereFroms', save_path.to_path).first == '(null)'
 
   cleanup_tmp_files
-  add_to_watchlist(save_path.to_path) if add_to_watchlist
+  print(save_path.to_path) # Output path so it can be sent to Watch List
 end
 
-def add_to_watchlist(path)
-  warn 'You do not have WatchList installed. Download it at https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList' unless system('/usr/bin/osascript', '-e', %Q[tell application id "com.runningwithcrayons.Alfred" to run trigger "add_file_to_watchlist" in workflow "com.vitorgalvao.alfred.watchlist" with argument "#{path}"])
-end
-
-def save_query(url, media_type, add_to_watchlist)
+def save_query(url, media_type)
   ensure_data_paths
 
   Query_file.write({
     alfredworkflow: {
-      arg: url,
-      variables: {
-        media_type: media_type,
-        add_to_watchlist: add_to_watchlist
-      }
+      variables: { media_type: media_type },
+      arg: url
     }
   }.to_json)
 end
@@ -140,13 +131,4 @@ def cleanup_tmp_files
   Pid_file.delete
   Progress_file.delete
   Query_file.delete
-end
-
-def to_bool(value)
-  # Useful to assign booleans to Alfred's JSON variables, since those are converted to strings
-  case value
-  when true, 'true', 1, '1' then true
-  when false, 'false', 0, '0', nil, '' then false
-  else raise ArgumentError, "Invalid value: #{value.inspect}"
-  end
 end
