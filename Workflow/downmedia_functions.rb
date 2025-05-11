@@ -17,80 +17,6 @@ Pid_file = Pathname(ENV['alfred_workflow_cache']).join('pid.txt')
 Progress_file = Pathname(ENV['alfred_workflow_cache']).join('progress.txt')
 Query_file = Pathname(ENV['alfred_workflow_cache']).join('query.json')
 
-def show_options(media_type)
-  clipboard = Open3.capture2('pbpaste').first.strip
-  tab_info = get_title_url
-
-  script_filter_items = []
-
-  common_options = {
-    subtitle: "Add to WatchList (⌥): #{Add_to_watchlist} 𐄁 Full Playlist (⌘): false",
-    valid: true,
-    icon: { path: 'icon.png' },
-    variables: {
-      media_type: media_type,
-      add_to_watchlist: Add_to_watchlist,
-      full_playlist: false
-    },
-    mods: {
-      cmd: {
-        subtitle: "Add to WatchList (⌥): #{Add_to_watchlist} 𐄁 Full Playlist (⌘): true",
-        variables: {
-          media_type: media_type,
-          Add_to_watchlist: Add_to_watchlist,
-          full_playlist: true # Modified variable
-        }
-      },
-      alt: {
-        subtitle: "Add to WatchList (⌥): #{!Add_to_watchlist} 𐄁 Full Playlist (⌘): false",
-        variables: {
-          media_type: media_type,
-          add_to_watchlist: !Add_to_watchlist, # Modified variable
-          full_playlist: false
-        }
-      },
-      'cmd+alt': {
-        subtitle: "Add to WatchList (⌥): #{!Add_to_watchlist} 𐄁 Full Playlist (⌘): true",
-        variables: {
-          media_type: media_type,
-          add_to_watchlist: !Add_to_watchlist, # Modified variable
-          full_playlist: true # Modified variable
-        }
-      }
-    }
-  }
-
-  if tab_info
-    tab_options = Marshal.load(Marshal.dump(common_options))
-    tab_options[:uid] = "Download #{media_type} tab"
-    tab_options[:title] = tab_info[:title]
-    tab_options[:arg] = tab_info[:url]
-    tab_options[:icon][:path] = 'images/browser.png'
-
-    script_filter_items.push(tab_options)
-  end
-
-  if clipboard.start_with?('http')
-    clipboard_options = Marshal.load(Marshal.dump(common_options))
-    clipboard_options[:uid] = "Download #{media_type} clipboard"
-    clipboard_options[:title] = clipboard
-    clipboard_options[:arg] = clipboard
-    clipboard_options[:icon][:path] = 'images/clipboard.png'
-
-    script_filter_items.push(clipboard_options)
-  end
-
-  if script_filter_items.empty?
-    script_filter_items.push(
-      title: 'No URL found',
-      subtitle: 'Did not find a URL in the clipboard or a supported browser as the frontmost app',
-      valid: false
-    )
-  end
-
-  puts({ items: script_filter_items }.to_json)
-end
-
 def show_progress
   ensure_data_paths
 
@@ -205,14 +131,6 @@ def kill_download
   # Kill process tree to stop download and prevent notification from showing success
   process_groud_id = Open3.capture2('/bin/ps', '-o', 'pgid=', Pid_file.read).first.strip
   system('kill', '--', "-#{process_groud_id}")
-end
-
-def get_title_url
-  url_title = Open3.capture2(Pathname.pwd.join('get_title_and_url.js').to_path, '--').first.split("\n") # Second dummy argument is to not require shellescaping single argument
-
-  return false if url_title.empty?
-
-  { url: url_title.first, title: url_title.last }
 end
 
 def notification(title, message)

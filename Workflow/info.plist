@@ -77,7 +77,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
+				<string>BFD78A9F-0242-46A6-982A-9DA120AB8328</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -232,7 +232,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
+				<string>3E1231DB-0667-46DE-9AD3-523D8837F824</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -290,9 +290,9 @@
 			<key>config</key>
 			<dict>
 				<key>argument</key>
-				<string>{query}</string>
+				<string></string>
 				<key>passthroughargument</key>
-				<false/>
+				<true/>
 				<key>variables</key>
 				<dict>
 					<key>media_type</key>
@@ -309,43 +309,106 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>acceptsfiles</key>
+				<key>alfredfiltersresults</key>
 				<false/>
-				<key>acceptsmulti</key>
+				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
-				<key>acceptstext</key>
+				<key>argumenttreatemptyqueryasnil</key>
 				<false/>
-				<key>acceptsurls</key>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>{var:download_video_keyword}</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Grabbing URLs…</string>
+				<key>script</key>
+				<string>function runCommand(...arguments) {
+  const task = $.NSTask.alloc.init
+  const stdout = $.NSPipe.pipe
+
+  task.executableURL = $.NSURL.fileURLWithPath("/usr/bin/env")
+  task.arguments = arguments
+  task.standardOutput = stdout
+  task.launchAndReturnError(false)
+
+  const dataOut = stdout.fileHandleForReading.readDataToEndOfFileAndReturnError(false)
+  const stringOut = $.NSString.alloc.initWithDataEncoding(dataOut, $.NSUTF8StringEncoding).js
+
+  return stringOut
+}
+
+const browserRaw = runCommand($("~/Library/Application Support/Alfred/Automation/Tasks/com.alfredapp.automation.core/safari/.common/tabs-current").stringByExpandingTildeInPath.js,
+  "frontmost_browser", "0", "json")
+
+const clipboardRaw = runCommand("/usr/bin/sqlite3",
+  "-newline", "",
+  $("~/Library/Application Support/Alfred/Databases/clipboard.alfdb").stringByExpandingTildeInPath.js,
+  "SELECT item FROM (SELECT item, MAX(ts) FROM clipboard WHERE dataType = 0 AND item LIKE \"http%\")")
+
+let scriptFilterItems = []
+
+if (browserRaw.length &gt; 0) {
+  const browserParsed = JSON.parse(JSON.parse(browserRaw)["alfredworkflow"]["arg"])
+
+  if (browserParsed.url) scriptFilterItems.push({
+    title: browserParsed.title,
+    subtitle: browserParsed.url,
+    icon: { path: "images/browser.png" },
+    arg: browserParsed.url
+  })
+}
+
+if (clipboardRaw.length &gt; 0) {
+  scriptFilterItems.push({
+    title: "Clipboard URL",
+    subtitle: clipboardRaw,
+    icon: { path: "images/clipboard.png" },
+    arg: clipboardRaw
+  })
+}
+
+if (scriptFilterItems.length === 0) {
+  JSON.stringify({ items: [{
+    title: "No URL found",
+    subtitle: "Did not find a URL in the clipboard or a supported browser",
+    valid: false
+  }]})
+} else {
+  JSON.stringify({ items: scriptFilterItems })
+}</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>skipuniversalaction</key>
 				<true/>
-				<key>name</key>
-				<string>Download Audio</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.universalaction</string>
-			<key>uid</key>
-			<string>B729925C-D828-4631-9988-67499E05791C</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>{query}</string>
-				<key>passthroughargument</key>
+				<key>subtext</key>
+				<string>Download video from popular sources</string>
+				<key>title</key>
+				<string>Download Video</string>
+				<key>type</key>
+				<integer>7</integer>
+				<key>withspace</key>
 				<false/>
-				<key>variables</key>
-				<dict>
-					<key>media_type</key>
-					<string>audio</string>
-				</dict>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
+			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>BFD78A9F-0242-46A6-982A-9DA120AB8328</string>
+			<string>DC74421D-631A-44B1-AC86-ED7793CADE26</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -381,6 +444,27 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>acceptsfiles</key>
+				<false/>
+				<key>acceptsmulti</key>
+				<integer>0</integer>
+				<key>acceptstext</key>
+				<false/>
+				<key>acceptsurls</key>
+				<true/>
+				<key>name</key>
+				<string>Download Audio</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.universalaction</string>
+			<key>uid</key>
+			<string>B729925C-D828-4631-9988-67499E05791C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -406,55 +490,22 @@ puts get_title_url[:url]</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<false/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>{var:download_video_keyword}</string>
-				<key>queuedelaycustom</key>
-				<integer>1</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Grabbing frontmost tab info and clipboard contents…</string>
-				<key>script</key>
-				<string>require "#{Dir.pwd}/downmedia_functions.rb"
-
-show_options('video')</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
+				<key>argument</key>
 				<string></string>
-				<key>skipuniversalaction</key>
+				<key>passthroughargument</key>
 				<true/>
-				<key>subtext</key>
-				<string>Download video from popular sources</string>
-				<key>title</key>
-				<string>Download Video</string>
-				<key>type</key>
-				<integer>2</integer>
-				<key>withspace</key>
-				<false/>
+				<key>variables</key>
+				<dict>
+					<key>media_type</key>
+					<string>audio</string>
+				</dict>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
+			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>DC74421D-631A-44B1-AC86-ED7793CADE26</string>
+			<string>BFD78A9F-0242-46A6-982A-9DA120AB8328</string>
 			<key>version</key>
-			<integer>3</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -497,11 +548,62 @@ show_options('video')</string>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string>Grabbing frontmost tab info and clipboard contents…</string>
+				<string>Grabbing URLs…</string>
 				<key>script</key>
-				<string>require "#{Dir.pwd}/downmedia_functions.rb"
+				<string>function runCommand(...arguments) {
+  const task = $.NSTask.alloc.init
+  const stdout = $.NSPipe.pipe
 
-show_options('audio')</string>
+  task.executableURL = $.NSURL.fileURLWithPath("/usr/bin/env")
+  task.arguments = arguments
+  task.standardOutput = stdout
+  task.launchAndReturnError(false)
+
+  const dataOut = stdout.fileHandleForReading.readDataToEndOfFileAndReturnError(false)
+  const stringOut = $.NSString.alloc.initWithDataEncoding(dataOut, $.NSUTF8StringEncoding).js
+
+  return stringOut
+}
+
+const browserRaw = runCommand($("~/Library/Application Support/Alfred/Automation/Tasks/com.alfredapp.automation.core/safari/.common/tabs-current").stringByExpandingTildeInPath.js,
+  "frontmost_browser", "0", "json")
+
+const clipboardRaw = runCommand("/usr/bin/sqlite3",
+  "-newline", "",
+  $("~/Library/Application Support/Alfred/Databases/clipboard.alfdb").stringByExpandingTildeInPath.js,
+  "SELECT item FROM (SELECT item, MAX(ts) FROM clipboard WHERE dataType = 0 AND item LIKE \"http%\")")
+
+let scriptFilterItems = []
+
+if (browserRaw.length &gt; 0) {
+  const browserParsed = JSON.parse(JSON.parse(browserRaw)["alfredworkflow"]["arg"])
+
+  if (browserParsed.url) scriptFilterItems.push({
+    title: browserParsed.title,
+    subtitle: browserParsed.url,
+    icon: { path: "images/browser.png" },
+    arg: browserParsed.url
+  })
+}
+
+if (clipboardRaw.length &gt; 0) {
+  scriptFilterItems.push({
+    title: "Clipboard URL",
+    subtitle: clipboardRaw,
+    icon: { path: "images/clipboard.png" },
+    arg: clipboardRaw
+  })
+}
+
+if (scriptFilterItems.length === 0) {
+  JSON.stringify({ items: [{
+    title: "No URL found",
+    subtitle: "Did not find a URL in the clipboard or a supported browser",
+    valid: false
+  }]})
+} else {
+  JSON.stringify({ items: scriptFilterItems })
+}</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -513,7 +615,7 @@ show_options('audio')</string>
 				<key>title</key>
 				<string>Download Audio</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>7</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -900,7 +1002,7 @@ Check download progress via the `dp` keyword.
 			<key>xpos</key>
 			<real>495</real>
 			<key>ypos</key>
-			<real>155</real>
+			<real>275</real>
 		</dict>
 		<key>B7A122F2-DA1A-4CF7-9990-9F4614C960CC</key>
 		<dict>
@@ -928,7 +1030,7 @@ Check download progress via the `dp` keyword.
 			<key>xpos</key>
 			<real>670</real>
 			<key>ypos</key>
-			<real>185</real>
+			<real>305</real>
 		</dict>
 		<key>C80AD651-BCAF-4B86-869A-D4D847A2379B</key>
 		<dict>
@@ -956,7 +1058,7 @@ Check download progress via the `dp` keyword.
 			<key>xpos</key>
 			<real>495</real>
 			<key>ypos</key>
-			<real>275</real>
+			<real>155</real>
 		</dict>
 		<key>FD70A114-2767-4782-8D5F-86AC4B3BB8B3</key>
 		<dict>
