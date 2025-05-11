@@ -672,9 +672,9 @@ download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_play
 			<key>config</key>
 			<dict>
 				<key>argument</key>
-				<string>{query}</string>
+				<string></string>
 				<key>passthroughargument</key>
-				<false/>
+				<true/>
 				<key>variables</key>
 				<dict>
 					<key>full_playlist</key>
@@ -692,9 +692,9 @@ download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_play
 			<key>config</key>
 			<dict>
 				<key>argument</key>
-				<string>{query}</string>
+				<string></string>
 				<key>passthroughargument</key>
-				<false/>
+				<true/>
 				<key>variables</key>
 				<dict>
 					<key>media_type</key>
@@ -727,9 +727,9 @@ download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_play
 			<key>config</key>
 			<dict>
 				<key>argument</key>
-				<string>{query}</string>
+				<string></string>
 				<key>passthroughargument</key>
-				<false/>
+				<true/>
 				<key>variables</key>
 				<dict>
 					<key>media_type</key>
