@@ -6,19 +6,6 @@
 	<string>com.vitorgalvao.alfred.downloadmedia</string>
 	<key>connections</key>
 	<dict>
-		<key>05D66076-BBF0-42B3-AACE-3395B291DCB8</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>24B8A81E-9901-45A9-B7BC-3D4134C8675A</key>
 		<array>
 			<dict>
@@ -124,6 +111,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>A5F1E477-6809-406A-A350-931125A6F529</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>B729925C-D828-4631-9988-67499E05791C</key>
 		<array>
 			<dict>
@@ -193,7 +193,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>05D66076-BBF0-42B3-AACE-3395B291DCB8</string>
+				<string>A5F1E477-6809-406A-A350-931125A6F529</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -245,7 +245,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>05D66076-BBF0-42B3-AACE-3395B291DCB8</string>
+				<string>A5F1E477-6809-406A-A350-931125A6F529</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -637,8 +637,8 @@ if (scriptFilterItems.length === 0) {
 				<string>require "#{Dir.pwd}/downmedia_functions.rb"
 
 save_pid(Process.pid)
-save_query(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_playlist'])
-download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_playlist'])</string>
+save_query(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'])
+download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'])</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -677,26 +677,6 @@ download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_play
 				<true/>
 				<key>variables</key>
 				<dict>
-					<key>full_playlist</key>
-					<string>false</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>05D66076-BBF0-42B3-AACE-3395B291DCB8</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string></string>
-				<key>passthroughargument</key>
-				<true/>
-				<key>variables</key>
-				<dict>
 					<key>media_type</key>
 					<string>video</string>
 				</dict>
@@ -705,6 +685,14 @@ download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_play
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>C80AD651-BCAF-4B86-869A-D4D847A2379B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.junction</string>
+			<key>uid</key>
+			<string>A5F1E477-6809-406A-A350-931125A6F529</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -905,13 +893,9 @@ cleanup_tmp_files</string>
 	<key>readme</key>
 	<string>## Usage
 
-Download video from [a plethora of online sources](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md) via the `dv` keyword. Download audio with `da`. Your clipboard and frontmost browser tab are checked for links.
+Download video from the most recent URL in your [Clipboard History](https://www.alfredapp.com/help/features/clipboard/) or the URL in the frontmost browser tab via the `dv` keyword. Download audio with `da`.
 
 ![Download video](images/about/dv.png)
-
-* &lt;kbd&gt;↩&lt;/kbd&gt; Download.
-* &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Download full playlist.
-* &lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Toggle adding to [Watch List](https://alfred.app/workflows/vitor/watch-list).
 
 Alternatively, download with the [Universal Action](https://www.alfredapp.com/help/features/universal-actions/).
 
@@ -925,13 +909,6 @@ Check download progress via the `dp` keyword.
 * &lt;kbd&gt;⌃&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Cancel.</string>
 	<key>uidata</key>
 	<dict>
-		<key>05D66076-BBF0-42B3-AACE-3395B291DCB8</key>
-		<dict>
-			<key>xpos</key>
-			<real>615</real>
-			<key>ypos</key>
-			<real>545</real>
-		</dict>
 		<key>24B8A81E-9901-45A9-B7BC-3D4134C8675A</key>
 		<dict>
 			<key>xpos</key>
@@ -989,6 +966,13 @@ Check download progress via the `dp` keyword.
 			<real>495</real>
 			<key>ypos</key>
 			<real>35</real>
+		</dict>
+		<key>A5F1E477-6809-406A-A350-931125A6F529</key>
+		<dict>
+			<key>xpos</key>
+			<real>670</real>
+			<key>ypos</key>
+			<real>545</real>
 		</dict>
 		<key>A8F4BBFD-E8A8-47D3-AE33-A8823E7CC291</key>
 		<dict>
@@ -1261,34 +1245,13 @@ Check download progress via the `dp` keyword.
 				<true/>
 			</dict>
 			<key>description</key>
-			<string></string>
+			<string>Name format for downloaded files. Reference the yt-dlp Output Template documentation.</string>
 			<key>label</key>
 			<string>Title Template</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
 			<string>single_title_template</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>default</key>
-				<string>%(playlist)s/%(playlist_index)s-%(title)s.%(ext)s</string>
-				<key>placeholder</key>
-				<string></string>
-				<key>required</key>
-				<false/>
-				<key>trim</key>
-				<true/>
-			</dict>
-			<key>description</key>
-			<string>Name format for downloaded files. Reference the yt-dlp Output Template documentation.</string>
-			<key>label</key>
-			<string>Playlist Title Template</string>
-			<key>type</key>
-			<string>textfield</string>
-			<key>variable</key>
-			<string>playlist_title_template</string>
 		</dict>
 	</array>
 	<key>version</key>

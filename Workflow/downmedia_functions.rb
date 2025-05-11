@@ -11,7 +11,6 @@ Audio_only_format = ENV['audio_only_format']
 Advanced_format = ENV['advanced_format']
 Download_dir = Pathname.new(ENV['download_dir'])
 Single_title_template = ENV['single_title_template']
-Playlist_title_template = ENV['playlist_title_template']
 
 Pid_file = Pathname(ENV['alfred_workflow_cache']).join('pid.txt')
 Progress_file = Pathname(ENV['alfred_workflow_cache']).join('progress.txt')
@@ -58,33 +57,25 @@ def show_progress
   puts({ rerun: 1, items: script_filter_items }.to_json)
 end
 
-def download_url(url, media_type, add_to_watchlist_string, full_playlist_string)
+def download_url(url, media_type, add_to_watchlist_string)
   # Setup
   add_to_watchlist = to_bool(add_to_watchlist_string)
-  full_playlist = to_bool(full_playlist_string)
   encoded_url = CGI.escape_html(url)
-  title_template = full_playlist ? Playlist_title_template : Single_title_template
+  title_template = Single_title_template
 
   # Video format is forced for consistency between --print filename and what is downloaded
   flags = media_type == 'audio' ?
     ['--extract-audio', '--audio-quality', '0', '--audio-format', Audio_only_format] :
     ['--sub-langs', 'all,-live_chat', '--embed-subs', '--format', Advanced_format]
 
-  full_playlist ?
-    flags.push('--yes-playlist') :
-    flags.push('--no-playlist')
-
-  flags.push('--ignore-errors', '--embed-chapters', '--output', Download_dir.join(title_template).to_path, url)
+  flags.push('--no-playlist', '--ignore-errors', '--embed-chapters', '--output', Download_dir.join(title_template).to_path, url)
 
   # May fail in certain situations, due to bugs in getting the filename beforehand
   # https://github.com/ytdl-org/youtube-dl/issues/5710
   # https://github.com/ytdl-org/youtube-dl/issues/7137
   get_filename = Open3.capture2('yt-dlp', '--simulate', '--print', 'filename', *flags).first.strip
 
-  save_path = full_playlist ?
-    Pathname(get_filename.split("\n").first).dirname :
-    Pathname(get_filename)
-
+  save_path = Pathname(get_filename)
   title = save_path.basename(save_path.extname).to_path
 
   # Download
@@ -106,7 +97,7 @@ def add_to_watchlist(path)
   warn 'You do not have WatchList installed. Download it at https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList' unless system('/usr/bin/osascript', '-e', %Q[tell application id "com.runningwithcrayons.Alfred" to run trigger "add_file_to_watchlist" in workflow "com.vitorgalvao.alfred.watchlist" with argument "#{path}"])
 end
 
-def save_query(url, media_type, add_to_watchlist, full_playlist)
+def save_query(url, media_type, add_to_watchlist)
   ensure_data_paths
 
   Query_file.write({
@@ -114,8 +105,7 @@ def save_query(url, media_type, add_to_watchlist, full_playlist)
       arg: url,
       variables: {
         media_type: media_type,
-        add_to_watchlist: add_to_watchlist,
-        full_playlist: false
+        add_to_watchlist: add_to_watchlist
       }
     }
   }.to_json)
