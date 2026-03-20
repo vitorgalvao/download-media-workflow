@@ -1534,7 +1534,7 @@ Check download progress via the `dp` keyword.
 			<key>config</key>
 			<dict>
 				<key>default</key>
-				<true/>
+				<false/>
 				<key>required</key>
 				<false/>
 				<key>text</key>
