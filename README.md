@@ -18,5 +18,5 @@ Check download progress via the `dp` keyword.
 
 ![Download progress](Workflow/images/about/dp.png)
 
-* <kbd>⌘</kbd><kbd>↩</kbd> Restart download.
-* <kbd>⌃</kbd><kbd>↩</kbd> Cancel.
+* <kbd>⌘</kbd><kbd>↩&#xFE0E;</kbd> Restart download.
+* <kbd>⌃</kbd><kbd>↩&#xFE0E;</kbd> Cancel.
