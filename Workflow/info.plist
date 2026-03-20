@@ -320,6 +320,18 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>AD432E02-3153-4164-A57C-A3C5F674821F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>_button2</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>F43FB5B8-4078-449C-9631-FE56025810D3</key>
 		<array>
@@ -724,6 +736,27 @@ if (scriptFilterItems.length === 0) {
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>https://alfred.app/workflows/vitor/watch-list/</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>F9B90B13-958B-44A4-A9B0-9B92E4C6FEE4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -802,21 +835,21 @@ function run(argv) {
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>browser</key>
-				<string></string>
-				<key>skipqueryencode</key>
-				<false/>
-				<key>skipvarencode</key>
-				<false/>
-				<key>spaces</key>
-				<string></string>
-				<key>url</key>
-				<string>https://alfred.app/workflows/vitor/watch-list/</string>
+				<key>button1</key>
+				<string>Install from the Alfred Gallery</string>
+				<key>button2</key>
+				<string>Reveal Configuration</string>
+				<key>button3</key>
+				<string>Cancel</string>
+				<key>description</key>
+				<string>The option to add to the Watch List is enabled but the workflow is not installed</string>
+				<key>title</key>
+				<string>Watch List Not Installed</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
+			<string>alfred.workflow.utility.dialog</string>
 			<key>uid</key>
-			<string>F9B90B13-958B-44A4-A9B0-9B92E4C6FEE4</string>
+			<string>E2D161C0-42E9-4D32-BDE6-FED4C715066F</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -849,27 +882,6 @@ function run(argv) {
 			<string>alfred.workflow.utility.conditional</string>
 			<key>uid</key>
 			<string>2BACFF19-7459-42F6-B8F4-6CFCA9B3CAFF</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>button1</key>
-				<string>Install From the Alfred Gallery</string>
-				<key>button2</key>
-				<string>Cancel</string>
-				<key>button3</key>
-				<string></string>
-				<key>description</key>
-				<string>The Watch List workflow is required to play a stream through it.</string>
-				<key>title</key>
-				<string>Watch List Not Installed</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.dialog</string>
-			<key>uid</key>
-			<string>E2D161C0-42E9-4D32-BDE6-FED4C715066F</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -928,6 +940,28 @@ function run(argv) {
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>delimiter</key>
+				<string>
+</string>
+				<key>discardemptyarguments</key>
+				<true/>
+				<key>outputas</key>
+				<integer>1</integer>
+				<key>trimarguments</key>
+				<true/>
+				<key>variableprefix</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.split</string>
+			<key>uid</key>
+			<string>95D9599B-65C1-410E-85B5-BB36F1676000</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>conditions</key>
 				<array>
 					<dict>
@@ -958,32 +992,31 @@ function run(argv) {
 			<integer>1</integer>
 		</dict>
 		<dict>
-			<key>config</key>
-			<dict>
-				<key>delimiter</key>
-				<string>
-</string>
-				<key>discardemptyarguments</key>
-				<true/>
-				<key>outputas</key>
-				<integer>1</integer>
-				<key>trimarguments</key>
-				<true/>
-				<key>variableprefix</key>
-				<string></string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.split</string>
-			<key>uid</key>
-			<string>95D9599B-65C1-410E-85B5-BB36F1676000</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.junction</string>
 			<key>uid</key>
 			<string>A5F1E477-6809-406A-A350-931125A6F529</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>alfredpreferences://navigateto/workflows&gt;workflow&gt;{const:alfred_workflow_uid}&gt;userconfig&gt;add_to_watchlist</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>AD432E02-3153-4164-A57C-A3C5F674821F</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -1297,6 +1330,15 @@ Check download progress via the `dp` keyword.
 			<key>ypos</key>
 			<real>875</real>
 		</dict>
+		<key>AD432E02-3153-4164-A57C-A3C5F674821F</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>xpos</key>
+			<real>2045</real>
+			<key>ypos</key>
+			<real>575</real>
+		</dict>
 		<key>B50278C3-F6C2-4103-A37B-B0901BE5723C</key>
 		<dict>
 			<key>colorindex</key>
@@ -1376,7 +1418,7 @@ Check download progress via the `dp` keyword.
 			<key>xpos</key>
 			<real>1880</real>
 			<key>ypos</key>
-			<real>535</real>
+			<real>520</real>
 		</dict>
 		<key>F43FB5B8-4078-449C-9631-FE56025810D3</key>
 		<dict>
@@ -1392,7 +1434,7 @@ Check download progress via the `dp` keyword.
 			<key>xpos</key>
 			<real>2045</real>
 			<key>ypos</key>
-			<real>515</real>
+			<real>455</real>
 		</dict>
 		<key>FD70A114-2767-4782-8D5F-86AC4B3BB8B3</key>
 		<dict>
