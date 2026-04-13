@@ -6,19 +6,6 @@
 	<string>com.vitorgalvao.alfred.downloadmedia</string>
 	<key>connections</key>
 	<dict>
-		<key>24B8A81E-9901-45A9-B7BC-3D4134C8675A</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>B7A122F2-DA1A-4CF7-9990-9F4614C960CC</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>2BACFF19-7459-42F6-B8F4-6CFCA9B3CAFF</key>
 		<array>
 			<dict>
@@ -58,6 +45,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>5F473BA8-9347-42C0-8E94-45EF4020A00A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B7A122F2-DA1A-4CF7-9990-9F4614C960CC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
 		<array>
 			<dict>
@@ -75,7 +75,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>24B8A81E-9901-45A9-B7BC-3D4134C8675A</string>
+				<string>5F473BA8-9347-42C0-8E94-45EF4020A00A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -520,6 +520,21 @@ if (scriptFilterItems.length === 0) {
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>tasksettings</key>
+				<dict/>
+				<key>taskuid</key>
+				<string>com.alfredapp.automation.extras/web-browsers/frontmost-browser/frontmost.tabs.current</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.automation.task</string>
+			<key>uid</key>
+			<string>5F473BA8-9347-42C0-8E94-45EF4020A00A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -568,31 +583,6 @@ if (scriptFilterItems.length === 0) {
 			<string>B729925C-D828-4631-9988-67499E05791C</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>require "#{Dir.pwd}/downmedia_functions.rb"
-
-puts get_title_url[:url]</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>24B8A81E-9901-45A9-B7BC-3D4134C8675A</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1233,13 +1223,6 @@ Check download progress via the `dp` keyword.
 * &lt;kbd&gt;⌃&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Cancel.</string>
 	<key>uidata</key>
 	<dict>
-		<key>24B8A81E-9901-45A9-B7BC-3D4134C8675A</key>
-		<dict>
-			<key>xpos</key>
-			<real>250</real>
-			<key>ypos</key>
-			<real>275</real>
-		</dict>
 		<key>2BACFF19-7459-42F6-B8F4-6CFCA9B3CAFF</key>
 		<dict>
 			<key>xpos</key>
@@ -1260,6 +1243,13 @@ Check download progress via the `dp` keyword.
 			<real>670</real>
 			<key>ypos</key>
 			<real>65</real>
+		</dict>
+		<key>5F473BA8-9347-42C0-8E94-45EF4020A00A</key>
+		<dict>
+			<key>xpos</key>
+			<real>250</real>
+			<key>ypos</key>
+			<real>275</real>
 		</dict>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
 		<dict>
